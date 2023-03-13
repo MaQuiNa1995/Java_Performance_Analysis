@@ -49,7 +49,7 @@ public void concatenar() {
 	String cadena = "fragmento1" + " fragmento2" + " fragmento3";
 }
 ```
-
+Cada vez que cambiemos algo de la configuración de fork iteraciones o adiciones de @Benchmark en metodo tendremos que compilar nuestro proyecto con `mvn clean package` o similares ya sea skipeando test etc
 
 # Ejemplo de análisis sobre 4 métodos de concatenación de Strings:
 
