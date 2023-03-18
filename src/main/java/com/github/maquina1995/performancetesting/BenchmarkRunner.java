@@ -1,5 +1,6 @@
 package com.github.maquina1995.performancetesting;
 
+import java.util.StringJoiner;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.Main;
@@ -40,8 +41,21 @@ public class BenchmarkRunner {
 	}
 
 	@Benchmark
+	public void stringConcat() {
+		String cadena = "fragmento1".concat(" fragmento2")
+				.concat(" fragmento3");
+	}
+
+	@Benchmark
 	public void stringJoin() {
 		String cadena = String.join(" ", "fragmento1" + "fragmento2" + "fragmento3");
+	}
+
+	@Benchmark
+	public void stringJoiner() {
+		StringJoiner cadena = new StringJoiner(" ").add("fragmento1")
+				.add("fragmento2")
+				.add("fragmento3");
 	}
 
 }

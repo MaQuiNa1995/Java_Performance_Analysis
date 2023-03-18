@@ -51,7 +51,7 @@ public void concatenar() {
 ```
 Cada vez que cambiemos algo de la configuración de fork iteraciones o adiciones de @Benchmark en metodo tendremos que compilar nuestro proyecto con `mvn clean package` o similares ya sea skipeando test etc
 
-# Ejemplo de análisis sobre 4 métodos de concatenación de Strings:
+# Ejemplo de análisis sobre 6 métodos de concatenación de Strings:
 
 ## Concatenación simple con +
 
@@ -59,7 +59,14 @@ Cada vez que cambiemos algo de la configuración de fork iteraciones o adiciones
 String cadena = "fragmento1" + " fragmento2" + " fragmento3";
 ```
 
-## Concatenación con stringBuilder
+## Concatenación con Concat
+```
+String cadena = "fragmento1"
+		.concat(" fragmento2")
+		.concat(" fragmento3");
+```
+
+## Concatenación con StringBuilder
 
 ```
 String cadena = new StringBuilder("fragmento1")
@@ -80,11 +87,22 @@ String cadena = String.format("%s %s %s", "fragmento1" , " fragmento2" , " fragm
 String cadena = String.join(" ", "fragmento1" + "fragmento2" + "fragmento3");
 ```
 
+## Concatenación con Stringjoiner
+
+```
+StringJoiner cadena = new StringJoiner(" ")
+		.add("fragmento1")
+		.add("fragmento2")
+		.add("fragmento3");
+```
+
 ## Resultados:
 
 | Benchmark | Mode | Cnt | Score | Error | Units |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| BenchmarkRunner.concatenar | avgt | 6 | 0,353 | ± 0,043 | ns/op |
-| BenchmarkRunner.stringBuilder | avgt | 6 | 11,107 | ± 1,795 | ns/op |
-| BenchmarkRunner.stringFormat | avgt | 6 | 200,220 | ± 2,589 | ns/op |
-| BenchmarkRunner.stringJoin | avgt | 6 | 5,474 | ± 0,095 | ns/op |
+| BenchmarkRunner.concatenar | avgt | 6 | 0,343 | ± 0,007 | ns/op |
+| BenchmarkRunner.stringBuilder | avgt | 6 | 10,913 | ± 1,864 | ns/op |
+| BenchmarkRunner.stringConcat | avgt | 6 | 16,677 | ± 1,765 | ns/op |
+| BenchmarkRunner.stringFormat | avgt | 6 | 219,744 | ± 95,807 | ns/op |
+| BenchmarkRunner.stringJoin | avgt | 6 | 5,596 | ± 0,479 | ns/op |
+| BenchmarkRunner.stringJoiner | avgt | 6 | 5,076 | ± 0,261 | ns/op |
